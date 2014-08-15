@@ -1,13 +1,7 @@
 <?php
 include 'conn.php';
-
 $result = mysql_query("SELECT * FROM products");
-
-//foreach($row as $key){
-//    echo $row['name'];
-//    echo "<br />";
-//}
-while($row = mysql_fetch_array($result))//循环每次mysql_fetch_array方法,如有值就一直循环下去
+while($row = mysql_fetch_array($result))
     //关联数组,键值对
     //$row为数组,数组内保存一行的数据,数据为每列对应的值
     //array("字段name"=>"name的值","字段年龄"=>"年龄大小值",......)
