@@ -9,18 +9,18 @@ include 'conn.php';
 
 $result = array();
 if ($id == 0){
-	$rs = mysql_query("select count(*) from products where parentId=9");//查询选择products表中parentId=9的记录条数
+	$rs = mysql_query("select count(*) from products where parentId<9");//查询选择products表中parentId=9的记录条数
     //Select  count(*) from 返回的是当前表中数据的条数，Select * from返回的是当前表中所有的数据
-	$row = mysql_fetch_row($rs);//查询结果保存在数组$row中
+	$row = mysql_fetch_row($rs);//查询结果保存在数组$row中-->符合条件的行数量是数组,,数组中第一个值即是总数量
 	$result["total"] = $row[0];//$row数组中就一个值-->$row[0]即是数量---->赋给$resule["total"]数组:
 	
-	$rs = mysql_query("select * from products where parentId=9 limit $offset,$rows");
+	$rs = mysql_query("select * from products where parentId<9 limit $offset,$rows");//从行$offset开始检索 ,检索$row行
 	$items = array();
-	while($row = mysql_fetch_array($rs)){
+	while($row = mysql_fetch_array($rs)){//循环出保存在$rs中检索出的行
 		$row['state'] = has_child($row['id']) ? 'closed' : 'open';
-		array_push($items, $row);
+		array_push($items, $row);//把$row插入$items数组,返回新数组长度
 	}
-	$result["rows"] = $items;
+	$result["rows"] = $items;//把查询到的条数赋值给$result数组的rows键
 } else {
 	$rs = mysql_query("select * from products where parentId=$id");
 	while($row = mysql_fetch_array($rs)){
@@ -30,7 +30,7 @@ if ($id == 0){
 	}
 }
 
-echo json_encode($result);
+echo json_encode($result);//把关联数组以json键值对的形式返回
 
 function has_child($id){
 	$rs = mysql_query("select count(*) from products where parentId=$id");
