@@ -1,11 +1,12 @@
 <?php
-$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+$page = isset($_POST['page']) ? intval($_POST['page']) : 1;//前台发送的请求参数
+//是否发送来page参数 ,如有则把page转为整数,无则给默认1
 //intval将变量转成整数类型
-$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
-$offset = ($page-1)*$rows;
-$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;//前台发送后台的请求参数-请求几行
+$offset = ($page-1)*$rows;//
+$id = isset($_POST['id']) ? intval($_POST['id']) : 0;//
 
-include 'conn.php';
+include 'conn.php';//连接主机/数据库
 
 $result = array();
 if ($id == 0){
