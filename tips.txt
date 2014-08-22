@@ -1,5 +1,0 @@
-treegrid4_getdata.php文件echo的是json
-
-直接预览该php文件看到的是json
-
-通过ajax请求该php页面则,ajax请求成功后回调函数内data为该json.即请求该路径文件内的数据返给前台.
