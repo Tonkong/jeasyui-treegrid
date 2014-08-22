@@ -1,0 +1,13 @@
+treegrid4_getdata.php文件echo的是json
+
+直接预览该php文件看到的是json
+
+通过ajax请求该php页面则,ajax请求成功后回调函数内data为该json.即请求该路径文件内的数据返给前台.
+
+
+php文件内如何生成json格式(已通过echo输出结果) :
+
+声明空数组作为返回的整个数组对象,往这个数组内push相应内容.内容也可为数组,也可push其他数据到该字数组.
+最后通过json_encode(声明的数组)--来把数组转成json对象输出.
+
+即:echo json_encode(数组);
